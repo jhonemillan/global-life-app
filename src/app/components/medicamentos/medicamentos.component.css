@@ -1,0 +1,10 @@
+.listas{
+    width: 200px;
+    border: 20px;
+}
+
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }

@@ -1,3 +1,5 @@
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MedicamentosComponent } from './components/medicamentos/medicamentos.component';
 import { Component } from '@angular/core';
 
 @Component({
