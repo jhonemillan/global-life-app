@@ -1,16 +1,8 @@
-<form (ngSubmit)="AddMedicamentoToHist()" >
-  <!-- <mat-form-field class="example-full-width">
-    <input matInput placeholder="Medicamento" aria-label="Medicamento" formControlName="myControl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let med of filteredOptions | async" [value]="med.id_prod">
-        <span>{{ med.nom_prod }}</span> |
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field> -->
 
   <mat-tab-group>
-      <mat-tab label="Historial">  
-  <br>
+      <mat-tab label="Historial" style="width: 100%">  
+          <form (submit)="AddMedicamentoToHist()" >          
+          <br>
     <div class="row">
       <div class="col col-sm-3">
           <mat-form-field style="width: 200px">
@@ -22,31 +14,29 @@
             </mat-form-field>
       </div>
 
-<div class="col col-sm-3">
-  <mat-form-field>
-      <input matInput type="text" placeholder="Dosificacion" name="dosis" [(ngModel)]="insumoPaciente.dosis" >
-    </mat-form-field>
-  
-</div>
-<div class="col col-sm-3">
-    <mat-form-field>
-        <!-- <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker> -->
+      <div class="col col-sm-3">
+        <mat-form-field>
+        
+          <input matInput type="text" placeholder="Dosificacion" name="dosis" [(ngModel)]="insumoPaciente.dosis" >
+          </mat-form-field>
+        
+      </div>
+      <div class="col col-sm-3">
+          <mat-form-field>
+              <input matInput  type="date" placeholder="Hora Dosificacion" [(ngModel)] = "insumoPaciente.hora" name="hora">
+            </mat-form-field>
 
-        <input matInput  type="date" placeholder="Hora Dosificacion" [(ngModel)] = "insumoPaciente.hora" name="hora">
-      </mat-form-field>
+      </div>
+      <div class="col col-sm-3">
 
-</div>
-<div class="col col-sm-3">
-
-  <button class="btn btn-primary" type="submit" >Guardar</button>
-</div>
+        <button class="btn btn-primary" type="submit" value="Guardar">Guardar</button>
+      </div>
 
     </div>
 
+  </form>
     <div class="row">        
-            <mat-table [dataSource]="dataSource" style="width: 90%">
+            <!-- <mat-table [dataSource]="dataSource" style="width: 90%">
               <ng-container matColumnDef="id_prod">
                 <mat-header-cell *matHeaderCellDef> Medicamento </mat-header-cell>
                 <mat-cell *matCellDef="let med"> {{med.id_prod}} </mat-cell>
@@ -59,14 +49,42 @@
                 <mat-header-cell *matHeaderCellDef> Hora </mat-header-cell>
                 <mat-cell *matCellDef="let med"> {{med.hora}} </mat-cell>
               </ng-container>
+              <ng-container matColumnDef = "botn">
+                  <mat-header-cell *matHeaderCellDef> </mat-header-cell>  
+                  <mat-cell *matCellDef="let btn"> 
+                      <button mat-button>Click me!</button> 
+                  </mat-cell>  
+              </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
               <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
+            </mat-table> -->
+
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th >Producto</th>
+                    <th scope="col">Dosis</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col"></th>                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let hist of historial | async"> 
+                    <td>{{hist.id_prod}}</td>
+                    <td>{{hist.dosis}}</td>
+                    <td>{{hist.hora}}</td>
+                    <td><input type="button" class="btn btn-danger" (click) = "DeleteMedicPaciente(hist.id_MedxSeg)" value="Borrar"></td>                   
+                  </tr>
+                  
+                </tbody>
+              </table>
           
     </div>  
   <br />
 </mat-tab>
 <mat-tab label="General">General</mat-tab>
+<div class="row">
+  
+</div>
 </mat-tab-group>
   
-</form>

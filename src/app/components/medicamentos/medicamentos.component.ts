@@ -9,6 +9,7 @@ import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
 import {MatTableDataSource} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-medicamentos',
@@ -31,6 +32,7 @@ export class MedicamentosComponent implements OnInit {
 
   ngOnInit() {
     this.GetMedicamentos();
+    this.GetHistMedicPaciente();
 
     // this.filteredOptions = this.myControl.valueChanges
     //   .pipe(
@@ -54,19 +56,27 @@ export class MedicamentosComponent implements OnInit {
       this.historial = this.historialService.getHistorialPaciente();
     }
 
-    AddMedicamentoToHist(){      
-      console.log('entra');
+    DeleteMedicPaciente(id){
+      this.historialService.deleteHistPaciente(id).subscribe(data=>{
+        console.log(data);
+        this.GetHistMedicPaciente();
+      })
+    }
+
+    AddMedicamentoToHist(){            
       this.insumoPaciente.createdAt = new Date();
       this.insumoPaciente.id_usu=9999;
       this.insumoPaciente.hora;
       var newdate = new Date();    
       
-      this.historialService.addMedicamentoHist(this.insumoPaciente).subscribe(res=>{
-        console.log(res);
-        this.GetHistMedicPaciente();
-        console.log('se llama el get history');
-      });
+      this.historialService.addMedicamentoHist(this.insumoPaciente).subscribe(res=>{       
+       this.insumoPaciente.dosis = "";
+       this.insumoPaciente.id_prod = "";
+       this.insumoPaciente.hora = new Date();
 
+       this.GetHistMedicPaciente();
+      });   
+      
     }
   }
 

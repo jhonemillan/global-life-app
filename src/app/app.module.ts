@@ -1,3 +1,4 @@
+import { EmitterService } from './services/emitter.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -41,6 +42,7 @@ import {
   MatStepperModule,
   MatAutocomplete,
   MatFormFieldModule,
+  MatCheckbox,
 } from '@angular/material';
 import { MedicamentosComponent } from './components/medicamentos/medicamentos.component';
 import { HistorialService } from './historial.service';
@@ -64,10 +66,12 @@ import { HistorialService } from './historial.service';
     MatNativeDateModule,
     MatTableModule,
     MatTabsModule,
+    MatCheckboxModule,
+    MatCheckbox,
     HttpModule,
     FormsModule
   ],
-  providers: [HistorialService, HttpClientModule],
+  providers: [HistorialService, HttpClientModule, EmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
