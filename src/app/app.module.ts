@@ -67,7 +67,8 @@ import { HistorialService } from './historial.service';
     MatTableModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatCheckbox,
+    MatCardModule,
+    MatSlideToggleModule,
     HttpModule,
     FormsModule
   ],

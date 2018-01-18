@@ -10,6 +10,7 @@ import {map} from 'rxjs/operators/map';
 import {MatTableDataSource} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCard } from '@angular/material';
 
 @Component({
   selector: 'app-medicamentos',
