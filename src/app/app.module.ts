@@ -8,7 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http'
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
-import 'hammerjs';
+
 import {  
   MatButtonModule,
   MatButtonToggleModule,
@@ -41,8 +41,10 @@ import {
   MatTooltipModule,
   MatStepperModule,
   MatAutocomplete,
-  MatFormFieldModule,
-  MatCheckbox,
+  MatFormFieldModule, 
+  
+  
+
 } from '@angular/material';
 import { MedicamentosComponent } from './components/medicamentos/medicamentos.component';
 import { HistorialService } from './historial.service';
@@ -69,6 +71,7 @@ import { HistorialService } from './historial.service';
     MatCheckboxModule,
     MatCardModule,
     MatSlideToggleModule,
+    MatListModule,
     HttpModule,
     FormsModule
   ],

@@ -1,63 +1,44 @@
-
+  
   <mat-tab-group>
-      <mat-tab label="Historial" style="width: 100%">  
+      <mat-tab label="Historial">  
           <form (submit)="AddMedicamentoToHist()" >          
           <br>
-    <div class="row">
-      <div class="col col-sm-3">
-          <mat-form-field style="width: 200px">
+      
+          <div class="example-container">
+              
+           
+
+          <mat-form-field>
               <mat-select placeholder="Medicamento" name="medicamentos" [(value)]="insumoPaciente.id_prod" name="listMx">
                 <mat-option *ngFor="let med of medicamentos | async" [value]="med.id_prod">
                   {{med.nom_prod}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
-      </div>
+      
 
-      <div class="col col-sm-3">
+      
         <mat-form-field>
         
           <input matInput type="text" placeholder="Dosificacion" name="dosis" [(ngModel)]="insumoPaciente.dosis" >
           </mat-form-field>
         
-      </div>
-      <div class="col col-sm-3">
+      
+      
           <mat-form-field>
-              <input matInput  type="date" placeholder="Hora Dosificacion" [(ngModel)] = "insumoPaciente.hora" name="hora">
+              <input matInput  type="time" placeholder="Hora Dosificacion" [(ngModel)] = "insumoPaciente.hora" name="hora">
             </mat-form-field>
 
-      </div>
-      <div class="col col-sm-3">
+          </div>
+      
 
         <button class="btn btn-primary" type="submit" value="Guardar">Guardar</button>
-      </div>
+      
 
-    </div>
+    
 
   </form>
-    <div class="row">        
-            <!-- <mat-table [dataSource]="dataSource" style="width: 90%">
-              <ng-container matColumnDef="id_prod">
-                <mat-header-cell *matHeaderCellDef> Medicamento </mat-header-cell>
-                <mat-cell *matCellDef="let med"> {{med.id_prod}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="dosis">
-                <mat-header-cell *matHeaderCellDef> Dosis </mat-header-cell>
-                <mat-cell *matCellDef="let med"> {{med.dosis}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="hora">
-                <mat-header-cell *matHeaderCellDef> Hora </mat-header-cell>
-                <mat-cell *matCellDef="let med"> {{med.hora}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef = "botn">
-                  <mat-header-cell *matHeaderCellDef> </mat-header-cell>  
-                  <mat-cell *matCellDef="let btn"> 
-                      <button mat-button>Click me!</button> 
-                  </mat-cell>  
-              </ng-container>
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table> -->
+    <div>                   
 
             <table class="table table-striped">
                 <thead>
@@ -83,14 +64,73 @@
   <br />
 </mat-tab>
 <mat-tab label="General">
-    <form action="">
-        <mat-card>
+  <div class="form-group">
 
-            <mat-slide-toggle  class="right">Piel Integra</mat-slide-toggle>
-        </mat-card>
-      </form>
+
+      
+    
+       
+          
+          <div>
+            Piel Integral
+            <mat-slide-toggle class="flex-sm-row-reverse"></mat-slide-toggle><br></div>
+        
+        
+        
+          <div class="example-container" >
+            <mat-form-field >
+              <mat-select [(value)]="PercepcionSelected" placeholder="Percepcion Sensorial">
+                <mat-option>None</mat-option>
+                <mat-option value="1">Completamente Limitado</mat-option>
+                <mat-option value="2">Muy limitado</mat-option>
+                <mat-option value="3">Levemente Limitado</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+       
+        
+        
+          <div class="example-container">
+            <mat-form-field >
+              <mat-select [(value)]="PercepcionSelected" placeholder="Exposicion a la humedad">
+                <mat-option>None</mat-option>
+                <mat-option value="1">Excesivamente Humeda</mat-option>
+                <mat-option value="2">Muy humeda</mat-option>
+                <mat-option value="3">Ocasionalmente humedo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="example-container" >
+              <mat-form-field >
+                <mat-select [(value)]="PercepcionSelected" placeholder="Actividad">
+                  <mat-option>None</mat-option>
+                  <mat-option value="1">Completamente Inmovil</mat-option>
+                  <mat-option value="2">Confinado a silla</mat-option>
+                  <mat-option value="3">camina Ocasionalmene</mat-option>
+                  <mat-option value="3">camina Frecuentemente</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field >
+                  <mat-select [(value)]="PercepcionSelected" placeholder="Movilidad">
+                    <mat-option>None</mat-option>
+                    <mat-option value="1">Completamente Inmovil</mat-option>
+                    <mat-option value="2">Muy Limitado</mat-option>
+                    <mat-option value="3">Levemente limitado</mat-option>
+                    <mat-option value="3">Ninguna Limitacion</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+         
+       
+     
+      
+      
   
+  </div>
+    
   </mat-tab>
-
-</mat-tab-group>
   
+</mat-tab-group>
+

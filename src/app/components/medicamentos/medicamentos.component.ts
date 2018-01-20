@@ -22,6 +22,7 @@ export class MedicamentosComponent implements OnInit {
   insumoPaciente = {} as historial_medicamentos;
   historial: Observable<historial_medicamentos[]>;
   selectedMed: string;
+  PercepcionSelected: number;
   dataSource = new HistDataSource(this.historialService);
   displayedColumns = ['id_prod', 'dosis', 'hora'];
   //myControl = new FormControl();
