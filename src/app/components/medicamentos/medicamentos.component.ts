@@ -11,6 +11,7 @@ import {MatTableDataSource} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatCard } from '@angular/material';
+import { MatSelectChange } from "@angular/material";
 
 @Component({
   selector: 'app-medicamentos',
@@ -22,9 +23,21 @@ export class MedicamentosComponent implements OnInit {
   insumoPaciente = {} as historial_medicamentos;
   historial: Observable<historial_medicamentos[]>;
   selectedMed: string;
-  PercepcionSelected: number;
+  PercepcionSelected: number = 0;
+  HumedadSelected: number = 0;
+  ActividadSelected: number = 0;
+  MovilidadSelected: number = 0;
+  NutricionSelected: number = 0;
+  FriccionSelected: number = 0;
   dataSource = new HistDataSource(this.historialService);
-  displayedColumns = ['id_prod', 'dosis', 'hora'];
+  comment;
+  puntajeTotalBraden = 0;
+  ThemeBraden;
+  MsgBradenTheme;
+  clasificacionRiesgos= [{"Alto":"Alto Riesgo"},
+                         {"Moderado": "Riesgo Moderado"},
+                         {"Bajo": "Bajo Riesgo"},
+                         {"No":"Sin Riesgo"}];
   //myControl = new FormControl();
   //filteredOptions: Observable<Medicamento[]>;
 
@@ -41,6 +54,32 @@ export class MedicamentosComponent implements OnInit {
     //     startWith<string | Medicamento>(''),
     //     map(value => typeof value === 'string' ? value : value.nom_prod)
     //   );
+  }
+
+  onSelectChange(event: MatSelectChange){
+    this.puntajeTotalBraden = Number(this.PercepcionSelected) + Number(this.HumedadSelected) + Number(this.ActividadSelected)
+                  + Number(this.MovilidadSelected) + Number(this.NutricionSelected) + Number(this.FriccionSelected);
+                  
+                  if(this.puntajeTotalBraden <= 12){
+                    this.ThemeBraden = "alert alert-danger"
+                    this.MsgBradenTheme = "Alto Riesgo";
+                  }
+
+
+                  if(this.puntajeTotalBraden >= 13 && this.puntajeTotalBraden <= 14){
+                    this.ThemeBraden = "alert alert-warning"
+                    this.MsgBradenTheme = "Riesgo Moderado";
+                  }
+
+                  if(this.puntajeTotalBraden >= 15 && this.puntajeTotalBraden <= 16){
+                    this.ThemeBraden = "alert alert-info"
+                    this.MsgBradenTheme = "Bajo Riesgo";
+                  }
+
+                  if(this.puntajeTotalBraden > 16){
+                    this.ThemeBraden = "alert alert-success"
+                    this.MsgBradenTheme = "Sin Riesgo";
+                  }
   }
 
   // filter(val: string): Observable<Medicamento[]> {
@@ -69,13 +108,12 @@ export class MedicamentosComponent implements OnInit {
       this.insumoPaciente.createdAt = new Date();
       this.insumoPaciente.id_usu=9999;
       this.insumoPaciente.hora;
-      var newdate = new Date();    
+     
       
       this.historialService.addMedicamentoHist(this.insumoPaciente).subscribe(res=>{       
        this.insumoPaciente.dosis = "";
-       this.insumoPaciente.id_prod = "";
-       this.insumoPaciente.hora = new Date();
-
+       this.insumoPaciente.id_prod = "";      
+       this.insumoPaciente.hora = "";
        this.GetHistMedicPaciente();
       });   
       

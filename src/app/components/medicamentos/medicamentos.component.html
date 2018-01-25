@@ -64,13 +64,11 @@
   <br />
 </mat-tab>
 <mat-tab label="General">
+  <br>
+    <div class={{ThemeBraden}} role="alert">
+        {{MsgBradenTheme}}
+      </div>
   <div class="form-group">
-
-
-      
-    
-       
-          
           <div>
             Piel Integral
             <mat-slide-toggle class="flex-sm-row-reverse"></mat-slide-toggle><br></div>
@@ -79,8 +77,8 @@
         
           <div class="example-container" >
             <mat-form-field >
-              <mat-select [(value)]="PercepcionSelected" placeholder="Percepcion Sensorial">
-                <mat-option>None</mat-option>
+              <mat-select [(value)]="PercepcionSelected" (change)="onSelectChange($event)" placeholder="Percepcion Sensorial">
+                <mat-option value="0">None</mat-option>
                 <mat-option value="1">Completamente Limitado</mat-option>
                 <mat-option value="2">Muy limitado</mat-option>
                 <mat-option value="3">Levemente Limitado</mat-option>
@@ -92,8 +90,8 @@
         
           <div class="example-container">
             <mat-form-field >
-              <mat-select [(value)]="PercepcionSelected" placeholder="Exposicion a la humedad">
-                <mat-option>None</mat-option>
+              <mat-select [(value)]="HumedadSelected" (change)="onSelectChange($event)" placeholder="Exposicion a la humedad">
+                <mat-option value="0">None</mat-option>
                 <mat-option value="1">Excesivamente Humeda</mat-option>
                 <mat-option value="2">Muy humeda</mat-option>
                 <mat-option value="3">Ocasionalmente humedo</mat-option>
@@ -103,24 +101,47 @@
 
           <div class="example-container" >
               <mat-form-field >
-                <mat-select [(value)]="PercepcionSelected" placeholder="Actividad">
-                  <mat-option>None</mat-option>
+                <mat-select [(value)]="ActividadSelected" (change)="onSelectChange($event)" placeholder="Actividad">
+                  <mat-option value="0">None</mat-option>
                   <mat-option value="1">Completamente Inmovil</mat-option>
                   <mat-option value="2">Confinado a silla</mat-option>
                   <mat-option value="3">camina Ocasionalmene</mat-option>
-                  <mat-option value="3">camina Frecuentemente</mat-option>
+                  <mat-option value="4">camina Frecuentemente</mat-option>
                 </mat-select>
               </mat-form-field>
 
               <mat-form-field >
-                  <mat-select [(value)]="PercepcionSelected" placeholder="Movilidad">
-                    <mat-option>None</mat-option>
+                  <mat-select [(value)]="MovilidadSelected" (change)="onSelectChange($event)" placeholder="Movilidad">
+                    <mat-option value="0">None</mat-option>
                     <mat-option value="1">Completamente Inmovil</mat-option>
                     <mat-option value="2">Muy Limitado</mat-option>
                     <mat-option value="3">Levemente limitado</mat-option>
-                    <mat-option value="3">Ninguna Limitacion</mat-option>
+                    <mat-option value="4">Ninguna Limitacion</mat-option>
                   </mat-select>
                 </mat-form-field>
+
+                <mat-form-field >
+                  <mat-select [(value)]="NutricionSelected" (change)="onSelectChange($event)" placeholder="Nutricion">
+                    <mat-option value="0">None</mat-option>
+                    <mat-option value="1">Deficiente</mat-option>
+                    <mat-option value="2">Inadecuada</mat-option>
+                    <mat-option value="3">Adecuada</mat-option>
+                    <mat-option value="4">Excelente</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field >
+                  <mat-select [(value)]="FriccionSelected" (change)="onSelectChange($event)" placeholder="Friccion y Cizallamiento">
+                    <mat-option value="0">None</mat-option>
+                    <mat-option value="1">Requiere maximo cuidado</mat-option>
+                    <mat-option value="2">Requiere minimo cuidado</mat-option>
+                    <mat-option value="3">Sin problema aparente</mat-option>                    
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <textarea matInput placeholder="Comentario" name="comentario" [(ngModel)] = "comment"></textarea>
+                  </mat-form-field>
             </div>
          
        
