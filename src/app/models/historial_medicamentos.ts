@@ -4,5 +4,6 @@ export interface historial_medicamentos{
     hora: string,
     id_prod: string,
     id_usu?: number
-    createdAt?: Date
+    createdAt?: Date,
+    medicamento: {nom_prod:string}
 }

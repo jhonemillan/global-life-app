@@ -7,7 +7,7 @@ import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
-import {MatTableDataSource} from '@angular/material';
+import {MatTableDataSource, MatIconModule} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatCard } from '@angular/material';

@@ -40,7 +40,7 @@
   </form>
     <div>                   
 
-            <table class="table table-striped">
+            <table class="table table-striped table-sm">
                 <thead>
                   <tr>
                     <th >Producto</th>
@@ -51,10 +51,14 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let hist of historial | async"> 
-                    <td>{{hist.id_prod}}</td>
+                    <td>{{hist.medicamento.nom_prod}}</td>
                     <td>{{hist.dosis}}</td>
                     <td>{{hist.hora}}</td>
-                    <td><input type="button" class="btn btn-danger" (click) = "DeleteMedicPaciente(hist.id_MedxSeg)" value="Borrar"></td>                   
+                    <td>
+                      <button mat-icon-button color="warn" (click) = "DeleteMedicPaciente(hist.id_MedxSeg)">
+                        <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                      </button>
+                    </td>              
                   </tr>
                   
                 </tbody>
@@ -143,12 +147,6 @@
                     <textarea matInput placeholder="Comentario" name="comentario" [(ngModel)] = "comment"></textarea>
                   </mat-form-field>
             </div>
-         
-       
-     
-      
-      
-  
   </div>
     
   </mat-tab>

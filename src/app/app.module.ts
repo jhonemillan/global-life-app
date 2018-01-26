@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http'
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
+import 'hammerjs'
 
 import {  
   MatButtonModule,
@@ -72,6 +73,8 @@ import { HistorialService } from './historial.service';
     MatCardModule,
     MatSlideToggleModule,
     MatListModule,
+    MatButtonModule,
+    MatIconModule,
     HttpModule,
     FormsModule
   ],
