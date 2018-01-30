@@ -150,6 +150,118 @@
   </div>
     
   </mat-tab>
+
+  <mat-tab label="Barthel">
+    <div class="form-group">
+     
+      <div class="example-container" >
+        <mat-form-field >
+          <mat-select [(value)]="showerSelected" (change)="onSelectChange($event)" placeholder="Banarse">
+            <mat-option value="0">Incapaz de hacerlo</mat-option>
+            <mat-option value="1">Intenta pero inseguro</mat-option>
+            <mat-option value="3">Alguna Ayuda</mat-option>
+            <mat-option value="4">Minima Ayuda</mat-option>
+            <mat-option value="5">Independiente</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+   
+    
+    
+      <div class="example-container">
+        <mat-form-field >
+          <mat-select [(value)]="ComerSelected" (change)="onSelectChange($event)" placeholder="Comer">
+            <mat-option value="0">Incapaz de hacerlo</mat-option>
+            <mat-option value="2">Intenta pero inseguro</mat-option>
+            <mat-option value="5">Alguna Ayuda</mat-option>
+            <mat-option value="8">Minima Ayuda</mat-option>
+            <mat-option value="10">Independiente</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container" >
+          <mat-form-field >
+            <mat-select [(value)]="retreteSelected" (change)="onSelectChange($event)" placeholder="Uso del retrete">
+              <mat-option value="0">Incapaz de hacerlo</mat-option>
+              <mat-option value="2">Intenta pero inseguro</mat-option>
+              <mat-option value="5">Alguna Ayuda</mat-option>
+              <mat-option value="8">Minima Ayuda</mat-option>
+              <mat-option value="10">Independiente</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field >
+              <mat-select [(value)]="escalerasSelected" (change)="onSelectChange($event)" placeholder="Uso de escaleras">
+                <mat-option value="0">Incapaz de hacerlo</mat-option>
+                <mat-option value="2">Intenta pero inseguro</mat-option>
+                <mat-option value="5">Alguna Ayuda</mat-option>
+                <mat-option value="8">Minima Ayuda</mat-option>
+                <mat-option value="10">Independiente</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field >
+              <mat-select [(value)]="VestirseSelected" (change)="onSelectChange($event)" placeholder="Vestirse">
+                <mat-option value="0">Incapaz de hacerlo</mat-option>
+                <mat-option value="2">Intenta pero inseguro</mat-option>
+                <mat-option value="5">Alguna Ayuda</mat-option>
+                <mat-option value="8">Minima Ayuda</mat-option>
+                <mat-option value="10">Independiente</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field >
+              <mat-select [(value)]="DeposicionSelected" (change)="onSelectChange($event)" placeholder="Deposicion">
+                <mat-option value="0">Incapaz de hacerlo</mat-option>
+                <mat-option value="2">Intenta pero inseguro</mat-option>
+                <mat-option value="5">Alguna Ayuda</mat-option>
+                <mat-option value="8">Minima Ayuda</mat-option>
+                <mat-option value="10">Independiente</mat-option>                   
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field >
+              <mat-select [(value)]="MiccionSelected" (change)="onSelectChange($event)" placeholder="Miccion">
+                <mat-option value="0">Incapaz de hacerlo</mat-option>
+                <mat-option value="2">Intenta pero inseguro</mat-option>
+                <mat-option value="5">Alguna Ayuda</mat-option>
+                <mat-option value="8">Minima Ayuda</mat-option>
+                <mat-option value="10">Independiente</mat-option>                   
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field >
+              <mat-select [(value)]="CaminarSelected" (change)="onSelectChange($event)" placeholder="Caminar">
+                <mat-option value="0">Incapaz de hacerlo</mat-option>
+                <mat-option value="2">Intenta pero inseguro</mat-option>
+                <mat-option value="10">Alguna Ayuda</mat-option>
+                <mat-option value="14">Minima Ayuda</mat-option>
+                <mat-option value="15">Independiente</mat-option>                   
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field >
+              <mat-select [(value)]="TrasladoSillaSelected" (change)="onSelectChange($event)" placeholder="Traslado Silla Cama">
+                <mat-option value="0">Incapaz de hacerlo</mat-option>
+                <mat-option value="2">Intenta pero inseguro</mat-option>
+                <mat-option value="10">Alguna Ayuda</mat-option>
+                <mat-option value="14">Minima Ayuda</mat-option>
+                <mat-option value="15">Independiente</mat-option>                   
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <textarea matInput placeholder="Comentario" name="comentario_val" [(ngModel)] = "Observaciones_val"></textarea>
+              </mat-form-field>
+        </div>
+</div>
+<div>
+  <button type="button" class="btn btn-primary btn-lg btn-block" (click)="SaveValoracion()">Guardar</button>
+</div>
+
+  </mat-tab>
   
 </mat-tab-group>
+
 

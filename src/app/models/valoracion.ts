@@ -9,6 +9,19 @@ export interface ValoracionEnfermeria{
     nutricion?: number,
     friccion_cizallamiento?:  number,
     puntajeTotal_Braden?: number,
-    observaciones_Braden?: string
+    observaciones_Braden?: string,
+    banarse?: number,
+    comer?: number,
+    usar_retrete?: number,
+    subir_escalera?: number,
+    vestirse?: number,
+    ctrl_deposicion?: number,
+    ctrl_miccion?: number,
+    caminar?: number,
+    traslado_silla_cama?: number,
+    puntajeTotal_val?: number,
+    Observaciones_val?: string,
+    PlandeCuidados?: string,
+    iden_pac: string
     
 }

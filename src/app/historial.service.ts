@@ -6,6 +6,7 @@ import 'rxjs/Rx';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { ValoracionEnfermeria } from './models/valoracion';
 
 @Injectable()
 export class HistorialService {
@@ -24,6 +25,12 @@ domain ="http://localhost:3000";
 
   addMedicamentoHist(data: historial_medicamentos): Observable<historial_medicamentos[]>{      
     return this.http.post(this.domain + '/seguimiento/add',data).map(res=> res.json()).catch(this.handleError);    
+  }
+
+  addValoracionPaciente(data: ValoracionEnfermeria): Observable<any>{
+    return this.http.post(this.domain + '/valoracion/add',data)
+    .map(res=> res.json())
+    .catch(this.handleError);
   }
 
   deleteHistPaciente(id): Observable<historial_medicamentos[]>{

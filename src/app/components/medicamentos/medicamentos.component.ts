@@ -12,6 +12,7 @@ import {DataSource} from '@angular/cdk/collections';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatCard } from '@angular/material';
 import { MatSelectChange } from "@angular/material";
+import { ValoracionEnfermeria } from '../../models/valoracion';
 
 @Component({
   selector: 'app-medicamentos',
@@ -29,6 +30,16 @@ export class MedicamentosComponent implements OnInit {
   MovilidadSelected: number = 0;
   NutricionSelected: number = 0;
   FriccionSelected: number = 0;
+  showerSelected: number = 0;
+  ComerSelected: number = 0;
+  retreteSelected: number = 0;
+  escalerasSelected: number = 0;
+  VestirseSelected: number = 0;
+  DeposicionSelected: number = 0;
+  MiccionSelected: number = 0;
+  CaminarSelected: number = 0;
+  TrasladoSillaSelected: number = 0;
+  Observaciones_val: string;
   dataSource = new HistDataSource(this.historialService);
   comment;
   puntajeTotalBraden = 0;
@@ -117,6 +128,28 @@ export class MedicamentosComponent implements OnInit {
        this.GetHistMedicPaciente();
       });   
       
+    }
+
+    
+
+    SaveValoracion(){
+      let valoracion: ValoracionEnfermeria = {} as any; 
+      valoracion.Fecha = new Date();
+      valoracion.actividad = this.ActividadSelected;
+      valoracion.banarse = this.showerSelected;
+      valoracion.caminar = this.CaminarSelected;
+      valoracion.comer = this.ComerSelected;
+      valoracion.ctrl_deposicion = this.DeposicionSelected;
+      valoracion.ctrl_miccion = this.MiccionSelected;
+      valoracion.exposicion_humedad = this.HumedadSelected;
+      valoracion.friccion_cizallamiento = this.FriccionSelected;
+      valoracion.movilidad = this.MovilidadSelected;
+      valoracion.nutricion = this.NutricionSelected;
+      valoracion.observaciones_Braden = this.comment;
+      valoracion.percepcion_sensorial = this.PercepcionSelected
+      this.historialService.addValoracionPaciente(valoracion).subscribe(res=>{
+        console.log(res);
+      });
     }
   }
 
