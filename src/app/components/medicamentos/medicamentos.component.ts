@@ -146,7 +146,8 @@ export class MedicamentosComponent implements OnInit {
       valoracion.movilidad = this.MovilidadSelected;
       valoracion.nutricion = this.NutricionSelected;
       valoracion.observaciones_Braden = this.comment;
-      valoracion.percepcion_sensorial = this.PercepcionSelected
+      valoracion.percepcion_sensorial = this.PercepcionSelected;
+      valoracion.puntajeTotal_Braden = this.puntajeTotalBraden;
       this.historialService.addValoracionPaciente(valoracion).subscribe(res=>{
         console.log(res);
       });
