@@ -49,12 +49,14 @@ import {
 } from '@angular/material';
 import { MedicamentosComponent } from './components/medicamentos/medicamentos.component';
 import { HistorialService } from './historial.service';
+import { UserselectComponent } from './components/userselect/userselect.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MedicamentosComponent
+    MedicamentosComponent,    
+    UserselectComponent
   ],
   imports: [
     BrowserModule,

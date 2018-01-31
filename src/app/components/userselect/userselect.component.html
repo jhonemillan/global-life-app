@@ -1,0 +1,11 @@
+<div style="width: 90%; flex-direction: column; display: flex">
+
+  <mat-form-field>
+    <mat-select placeholder="Paciente" name="pacientes" [(value)]="pacienteSelected" name="listPc">
+      <mat-option *ngFor="let paciente of pacientes | async" [value]="paciente.iden_Pac">
+        {{paciente.nom_Pac + paciente.ape_Pac}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<button type="button" class="btn btn-primary btn-lg">Iniciar Test</button>

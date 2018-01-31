@@ -1,3 +1,4 @@
+import { Paciente } from './models/pacientes';
 import { historial_medicamentos } from './models/historial_medicamentos';
 import { Medicamento } from './models/medicamento';
 import { Injectable } from '@angular/core';
@@ -16,6 +17,10 @@ domain ="http://localhost:3000";
 
   getMedicamentos(): Observable<Medicamento[]>{
     return this.http.get(this.domain + '/medicamento/getAll').map(res=> res.json()).catch(this.handleError);
+  }
+
+  getPacientes(): Observable<Paciente[]>{
+    return this.http.get(this.domain + '/pacientes/getListPacientes').map(res=> res.json()).catch(this.handleError);
   }
 
   getHistorialPaciente(): Observable<historial_medicamentos[]>{   
@@ -37,7 +42,6 @@ domain ="http://localhost:3000";
     return this.http.delete(this.domain + '/seguimiento/delete/'+id.toString()).map(res=> res.json())
                                                                                .catch(this.handleError);
   }
-
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
