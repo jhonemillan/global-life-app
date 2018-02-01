@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app.routing.module';
 import { EmitterService } from './services/emitter.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BrowserModule } from '@angular/platform-browser';
@@ -78,7 +79,8 @@ import { UserselectComponent } from './components/userselect/userselect.componen
     MatButtonModule,
     MatIconModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [HistorialService, HttpClientModule, EmitterService],
   bootstrap: [AppComponent]
