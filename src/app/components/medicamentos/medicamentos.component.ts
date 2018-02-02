@@ -1,3 +1,4 @@
+import { Paciente } from './../../models/pacientes';
 import { historial_medicamentos } from './../../models/historial_medicamentos';
 import { Observable } from 'rxjs/Rx';
 import { HistorialService } from './../../historial.service';
@@ -13,6 +14,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatCard } from '@angular/material';
 import { MatSelectChange } from "@angular/material";
 import { ValoracionEnfermeria } from '../../models/valoracion';
+import { Input, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-medicamentos',
@@ -20,6 +24,7 @@ import { ValoracionEnfermeria } from '../../models/valoracion';
   styleUrls: ['./medicamentos.component.css']
 })
 export class MedicamentosComponent implements OnInit {
+  @Input() paciente: Paciente;
   medicamentos: Observable<Medicamento[]>;
   insumoPaciente = {} as historial_medicamentos;
   historial: Observable<historial_medicamentos[]>;
@@ -54,17 +59,19 @@ export class MedicamentosComponent implements OnInit {
 
 
 
-  constructor(private historialService: HistorialService) { }
+  constructor(private historialService: HistorialService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.GetMedicamentos();
     this.GetHistMedicPaciente();
+    this.route.queryParams.subscribe((params)=>{
+    var tesd = params['id'];
+    console.log(tesd);  
+    })
 
-    // this.filteredOptions = this.myControl.valueChanges
-    //   .pipe(
-    //     startWith<string | Medicamento>(''),
-    //     map(value => typeof value === 'string' ? value : value.nom_prod)
-    //   );
+    
   }
 
   onSelectChange(event: MatSelectChange){
