@@ -14,6 +14,7 @@ import { Router } from '@angular/router/src/router';
 export class UserselectComponent implements OnInit {
   pacientes: Observable<Paciente[]>
   pacienteSelected: Paciente = {} as any;
+  
   iden_Pac;
 
   constructor(private historialService: HistorialService) { }
