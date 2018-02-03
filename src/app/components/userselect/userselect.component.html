@@ -2,10 +2,10 @@
 
   <mat-form-field>
     <mat-select placeholder="Paciente" name="pacientes" [(ngModel)]="pacienteSelected" name="listPc">
-      <mat-option *ngFor="let paciente of pacientes | async" [value]="paciente.iden_Pac">
+      <mat-option *ngFor="let paciente of pacientes | async" [value]="paciente">
         {{paciente.nom_Pac +' '+ paciente.ape_Pac}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
- <p><a routerLink='/visita'[queryParams]="{id:pacienteSelected.iden_Pac} || 0" class="btn btn-primary btn-large">Register</a></p> 
+ <p><a routerLink='/visita'[queryParams]="{id: pacienteSelected.iden_Pac} || 0" class="btn btn-primary btn-large">Register</a></p> 

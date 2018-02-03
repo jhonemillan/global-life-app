@@ -13,9 +13,8 @@ import { Router } from '@angular/router/src/router';
 })
 export class UserselectComponent implements OnInit {
   pacientes: Observable<Paciente[]>
-  pacienteSelected: Paciente = {} as any;
-  
-  iden_Pac;
+  pacienteSelected:Paciente = {} as any;
+  idSelected;
 
   constructor(private historialService: HistorialService) { }
 

@@ -50,6 +50,7 @@ export class MedicamentosComponent implements OnInit {
   puntajeTotalBraden = 0;
   ThemeBraden;
   MsgBradenTheme;
+  idPaciente;
   clasificacionRiesgos= [{"Alto":"Alto Riesgo"},
                          {"Moderado": "Riesgo Moderado"},
                          {"Bajo": "Bajo Riesgo"},
@@ -67,8 +68,8 @@ export class MedicamentosComponent implements OnInit {
     this.GetMedicamentos();
     this.GetHistMedicPaciente();
     this.route.queryParams.subscribe((params)=>{
-    var tesd = params['id'];
-    console.log(tesd);  
+      this.idPaciente = params['id'];
+      console.log(this.idPaciente);
     })
 
     
@@ -141,6 +142,7 @@ export class MedicamentosComponent implements OnInit {
 
     SaveValoracion(){
       let valoracion: ValoracionEnfermeria = {} as any; 
+      valoracion.iden_pac = this.idPaciente;
       valoracion.Fecha = new Date();
       valoracion.actividad = this.ActividadSelected;
       valoracion.banarse = this.showerSelected;
