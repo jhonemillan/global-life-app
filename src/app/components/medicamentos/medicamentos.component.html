@@ -190,9 +190,7 @@
               </mat-form-field>
         </div>
 </div>
-<div>
-  <button type="button" class="btn btn-primary btn-block" (click)="SaveValoracion()">Guardar</button>
-</div>
+
 
   </mat-tab>
 
@@ -228,7 +226,7 @@
     </div>
 
 
-  <button class="btn btn-primary" type="submit" value="Guardar">Guardar</button>
+  <button class="btn btn-primary" type="submit" value="Guardar">Agregar a lista</button>
 
 
 
@@ -265,5 +263,17 @@
 </mat-tab>
   
 </mat-tab-group>
+
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-primary btn-block " (click)="SaveValoracion()">Guardar</button>  
+  </div>
+  
+  <div class="col">
+    <button type="button" class="btn btn-danger btn-block " (click)="SaveValoracion()">Cancelar</button>
+  </div>
+  
+</div>
+
 
 
