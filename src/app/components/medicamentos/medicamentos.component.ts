@@ -1,3 +1,4 @@
+
 import { Paciente } from './../../models/pacientes';
 import { historial_medicamentos } from './../../models/historial_medicamentos';
 import { Observable } from 'rxjs/Rx';
@@ -28,38 +29,15 @@ export class MedicamentosComponent implements OnInit {
   medicamentos: Observable<Medicamento[]>;
   insumoPaciente = {} as historial_medicamentos;
   historial: Observable<historial_medicamentos[]>;
-  selectedMed: string;
-  PercepcionSelected: number = 0;
-  HumedadSelected: number = 0;
-  ActividadSelected: number = 0;
-  MovilidadSelected: number = 0;
-  NutricionSelected: number = 0;
-  FriccionSelected: number = 0;
-  showerSelected: number = 0;
-  ComerSelected: number = 0;
-  retreteSelected: number = 0;
-  escalerasSelected: number = 0;
-  VestirseSelected: number = 0;
-  DeposicionSelected: number = 0;
-  MiccionSelected: number = 0;
-  CaminarSelected: number = 0;
-  TrasladoSillaSelected: number = 0;
-  Observaciones_val: string;
-  dataSource = new HistDataSource(this.historialService);
-  comment;
+  valoracion: ValoracionEnfermeria = {} as any; 
+  
   puntajeTotalBraden = 0;
+  totalBarthel: number = 0;
   ThemeBraden;
   MsgBradenTheme;
-  idPaciente;
-  clasificacionRiesgos= [{"Alto":"Alto Riesgo"},
-                         {"Moderado": "Riesgo Moderado"},
-                         {"Bajo": "Bajo Riesgo"},
-                         {"No":"Sin Riesgo"}];
-  //myControl = new FormControl();
-  //filteredOptions: Observable<Medicamento[]>;
-
-
-
+  ThemeBarthel;
+  MsgBarthel;
+  
   constructor(private historialService: HistorialService,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -67,17 +45,17 @@ export class MedicamentosComponent implements OnInit {
   ngOnInit() {
     this.GetMedicamentos();
     this.GetHistMedicPaciente();
+    this.valoracion.pielIntegra = false;
     this.route.queryParams.subscribe((params)=>{
-      this.idPaciente = params['id'];
-      console.log(this.idPaciente);
+      this.valoracion.iden_pac = params['id'];      
     })
 
     
   }
 
-  onSelectChange(event: MatSelectChange){
-    this.puntajeTotalBraden = Number(this.PercepcionSelected) + Number(this.HumedadSelected) + Number(this.ActividadSelected)
-                  + Number(this.MovilidadSelected) + Number(this.NutricionSelected) + Number(this.FriccionSelected);
+    onSelectChange(event: MatSelectChange){
+      this.puntajeTotalBraden = Number(this.valoracion.percepcion_sensorial) + Number(this.valoracion.exposicion_humedad) + Number(this.valoracion.actividad)
+                  + Number(this.valoracion.movilidad) + Number(this.valoracion.nutricion) + Number(this.valoracion.friccion_cizallamiento);
                   
                   if(this.puntajeTotalBraden <= 12){
                     this.ThemeBraden = "alert alert-danger"
@@ -99,16 +77,48 @@ export class MedicamentosComponent implements OnInit {
                     this.ThemeBraden = "alert alert-success"
                     this.MsgBradenTheme = "Sin Riesgo";
                   }
-  }
+    }
 
-  // filter(val: string): Observable<Medicamento[]> {
-  //   return this.medicamentos
-  //       .map(response => response.filter(
-  //           option => option.nom_prod.toLowerCase().indexOf(val.toLowerCase()) === 0
-  //       ));
-  //}
+    OnSelectChangeBartel(event: MatSelectChange){
+      
+       this.totalBarthel = Number(this.valoracion.banarse) +
+                                         Number(this.valoracion.comer) +
+                                         Number(this.valoracion.usar_retrete) +
+                                         Number(this.valoracion.subir_escalera) +
+                                         Number(this.valoracion.vestirse) +
+                                         Number(this.valoracion.ctrl_deposicion) +
+                                         Number(this.valoracion.ctrl_miccion) +
+                                         Number(this.valoracion.caminar) + 
+                                         Number(this.valoracion.traslado_silla_cama)
 
-  GetMedicamentos(){
+                                         console.log(this.totalBarthel)
+      
+
+                                         if(this.totalBarthel <= 40){
+                                          this.ThemeBarthel = "alert alert-danger"
+                                          this.MsgBarthel = "Alta Dependencia";
+                                        }
+                      
+                      
+                                        if(this.totalBarthel >= 41 && this.totalBarthel <= 55){
+                                          this.ThemeBarthel = "alert alert-warning"
+                                          this.MsgBarthel = "Dependencia Moderada";
+                                        }
+                      
+                                        if(this.totalBarthel >= 56 && this.totalBarthel <= 99){
+                                          this.ThemeBarthel = "alert alert-info"
+                                          this.MsgBarthel = "Dependencia Leve";
+                                        }
+                      
+                                        if(this.totalBarthel > 99){
+                                          this.ThemeBarthel = "alert alert-success"
+                                          this.MsgBarthel = "Independiente";
+                                        }
+    }
+
+
+
+    GetMedicamentos(){
     this.medicamentos =  this.historialService.getMedicamentos();
     }
 
@@ -138,39 +148,20 @@ export class MedicamentosComponent implements OnInit {
       
     }
 
-    
+    Cancelar(){
+      this.router.navigate(['/selectuser'])
+    }   
 
     SaveValoracion(){
-      let valoracion: ValoracionEnfermeria = {} as any; 
-      valoracion.iden_pac = this.idPaciente;
-      valoracion.Fecha = new Date();
-      valoracion.actividad = this.ActividadSelected;
-      valoracion.banarse = this.showerSelected;
-      valoracion.caminar = this.CaminarSelected;
-      valoracion.comer = this.ComerSelected;
-      valoracion.ctrl_deposicion = this.DeposicionSelected;
-      valoracion.ctrl_miccion = this.MiccionSelected;
-      valoracion.exposicion_humedad = this.HumedadSelected;
-      valoracion.friccion_cizallamiento = this.FriccionSelected;
-      valoracion.movilidad = this.MovilidadSelected;
-      valoracion.nutricion = this.NutricionSelected;
-      valoracion.observaciones_Braden = this.comment;
-      valoracion.percepcion_sensorial = this.PercepcionSelected;
-      valoracion.puntajeTotal_Braden = this.puntajeTotalBraden;
-      this.historialService.addValoracionPaciente(valoracion).subscribe(res=>{
+      this.valoracion.Fecha = new Date();      
+      this.valoracion.puntajeTotal_Braden = this.puntajeTotalBraden;
+      this.valoracion.puntajeTotal_val = this.totalBarthel;
+
+      this.historialService.addValoracionPaciente(this.valoracion).subscribe(res=>{
         console.log(res);
       });
     }
   }
 
-  export class HistDataSource extends DataSource<any> {
-    constructor(private historialService: HistorialService) {
-      super();
-    }
-    connect(): Observable<historial_medicamentos[]> {
-      return this.historialService.getHistorialPaciente();
-    }
-    disconnect() {}
-  }
 
 

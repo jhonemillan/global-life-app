@@ -7,19 +7,27 @@
         {{MsgBradenTheme}}
       </div>
   <div class="form-group">
-          <div>
-            Piel Integral
-            <mat-slide-toggle class="flex-sm-row-reverse"></mat-slide-toggle><br></div>
-        
-        
-        
-          <div class="example-container" >
+          
+
+          <div class="example-container">
+
+              <div>
+                  Piel Integral
+                  <mat-slide-toggle [(ngModel)]="valoracion.pielIntegra" class="flex-sm-row-reverse"></mat-slide-toggle>            
+                  <br>
+                </div>
+                
+              <mat-form-field>
+                  <input matInput [(ngModel)]="valoracion.observacion_Piel" placeholder="Observacion Piel">
+                </mat-form-field>
+
+
             <mat-form-field >
-              <mat-select [(value)]="PercepcionSelected" (change)="onSelectChange($event)" placeholder="Percepcion Sensorial">
-                <mat-option value="0">None</mat-option>
+              <mat-select [(value)]="valoracion.percepcion_sensorial" (change)="onSelectChange($event)" placeholder="Percepcion Sensorial">                
                 <mat-option value="1">Completamente Limitado</mat-option>
                 <mat-option value="2">Muy limitado</mat-option>
                 <mat-option value="3">Levemente Limitado</mat-option>
+                <mat-option value="4">Ninguna Limitacion</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -28,19 +36,18 @@
         
           <div class="example-container">
             <mat-form-field >
-              <mat-select [(value)]="HumedadSelected" (change)="onSelectChange($event)" placeholder="Exposicion a la humedad">
-                <mat-option value="0">None</mat-option>
+              <mat-select [(value)]="valoracion.exposicion_humedad" (change)="onSelectChange($event)" placeholder="Exposicion a la humedad">                
                 <mat-option value="1">Excesivamente Humeda</mat-option>
                 <mat-option value="2">Muy humeda</mat-option>
                 <mat-option value="3">Ocasionalmente humedo</mat-option>
+                <mat-option value="4">Raramente humedo</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
 
           <div class="example-container" >
               <mat-form-field >
-                <mat-select [(value)]="ActividadSelected" (change)="onSelectChange($event)" placeholder="Actividad">
-                  <mat-option value="0">None</mat-option>
+                <mat-select [(value)]="valoracion.actividad" (change)="onSelectChange($event)" placeholder="Actividad">                  
                   <mat-option value="1">Completamente Inmovil</mat-option>
                   <mat-option value="2">Confinado a silla</mat-option>
                   <mat-option value="3">camina Ocasionalmene</mat-option>
@@ -49,8 +56,7 @@
               </mat-form-field>
 
               <mat-form-field >
-                  <mat-select [(value)]="MovilidadSelected" (change)="onSelectChange($event)" placeholder="Movilidad">
-                    <mat-option value="0">None</mat-option>
+                  <mat-select [(value)]="valoracion.movilidad" (change)="onSelectChange($event)" placeholder="Movilidad">                    
                     <mat-option value="1">Completamente Inmovil</mat-option>
                     <mat-option value="2">Muy Limitado</mat-option>
                     <mat-option value="3">Levemente limitado</mat-option>
@@ -59,8 +65,7 @@
                 </mat-form-field>
 
                 <mat-form-field >
-                  <mat-select [(value)]="NutricionSelected" (change)="onSelectChange($event)" placeholder="Nutricion">
-                    <mat-option value="0">None</mat-option>
+                  <mat-select [(value)]="valoracion.nutricion" (change)="onSelectChange($event)" placeholder="Nutricion">                    
                     <mat-option value="1">Deficiente</mat-option>
                     <mat-option value="2">Inadecuada</mat-option>
                     <mat-option value="3">Adecuada</mat-option>
@@ -69,8 +74,7 @@
                 </mat-form-field>
 
                 <mat-form-field >
-                  <mat-select [(value)]="FriccionSelected" (change)="onSelectChange($event)" placeholder="Friccion y Cizallamiento">
-                    <mat-option value="0">None</mat-option>
+                  <mat-select [(value)]="valoracion.friccion_cizallamiento" (change)="onSelectChange($event)" placeholder="Friccion y Cizallamiento">                    
                     <mat-option value="1">Requiere maximo cuidado</mat-option>
                     <mat-option value="2">Requiere minimo cuidado</mat-option>
                     <mat-option value="3">Sin problema aparente</mat-option>                    
@@ -78,7 +82,7 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <textarea matInput placeholder="Comentario" name="comentario" [(ngModel)] = "comment"></textarea>
+                    <textarea matInput placeholder="Comentario" name="comentario" [(ngModel)] = "valoracion.observaciones_Braden"></textarea>
                   </mat-form-field>
             </div>
   </div>
@@ -86,11 +90,14 @@
   </mat-tab>
 
   <mat-tab label="Indice Barthel">
+      <div class={{ThemeBarthel}} role="alert">
+          {{MsgBarthel}}
+        </div>
     <div class="form-group">
      
       <div class="example-container" >
         <mat-form-field >
-          <mat-select [(value)]="showerSelected" (change)="onSelectChange($event)" placeholder="Banarse">
+          <mat-select [(value)]="valoracion.banarse" (change)="OnSelectChangeBartel($event)" placeholder="Banarse">
             <mat-option value="0">Incapaz de hacerlo</mat-option>
             <mat-option value="1">Intenta pero inseguro</mat-option>
             <mat-option value="3">Alguna Ayuda</mat-option>
@@ -104,7 +111,7 @@
     
       <div class="example-container">
         <mat-form-field >
-          <mat-select [(value)]="ComerSelected" (change)="onSelectChange($event)" placeholder="Comer">
+          <mat-select [(value)]="valoracion.comer" (change)="OnSelectChangeBartel($event)" placeholder="Comer">
             <mat-option value="0">Incapaz de hacerlo</mat-option>
             <mat-option value="2">Intenta pero inseguro</mat-option>
             <mat-option value="5">Alguna Ayuda</mat-option>
@@ -116,7 +123,7 @@
 
       <div class="example-container" >
           <mat-form-field >
-            <mat-select [(value)]="retreteSelected" (change)="onSelectChange($event)" placeholder="Uso del retrete">
+            <mat-select [(value)]="valoracion.usar_retrete" (change)="OnSelectChangeBartel($event)" placeholder="Uso del retrete">
               <mat-option value="0">Incapaz de hacerlo</mat-option>
               <mat-option value="2">Intenta pero inseguro</mat-option>
               <mat-option value="5">Alguna Ayuda</mat-option>
@@ -126,7 +133,7 @@
           </mat-form-field>
 
           <mat-form-field >
-              <mat-select [(value)]="escalerasSelected" (change)="onSelectChange($event)" placeholder="Uso de escaleras">
+              <mat-select [(value)]="valoracion.subir_escalera" (change)="OnSelectChangeBartel($event)" placeholder="Uso de escaleras">
                 <mat-option value="0">Incapaz de hacerlo</mat-option>
                 <mat-option value="2">Intenta pero inseguro</mat-option>
                 <mat-option value="5">Alguna Ayuda</mat-option>
@@ -136,7 +143,7 @@
             </mat-form-field>
 
             <mat-form-field >
-              <mat-select [(value)]="VestirseSelected" (change)="onSelectChange($event)" placeholder="Vestirse">
+              <mat-select [(value)]="valoracion.vestirse" (change)="OnSelectChangeBartel($event)" placeholder="Vestirse">
                 <mat-option value="0">Incapaz de hacerlo</mat-option>
                 <mat-option value="2">Intenta pero inseguro</mat-option>
                 <mat-option value="5">Alguna Ayuda</mat-option>
@@ -146,7 +153,7 @@
             </mat-form-field>
 
             <mat-form-field >
-              <mat-select [(value)]="DeposicionSelected" (change)="onSelectChange($event)" placeholder="Deposicion">
+              <mat-select [(value)]="valoracion.ctrl_deposicion" (change)="OnSelectChangeBartel($event)" placeholder="Deposicion">
                 <mat-option value="0">Incapaz de hacerlo</mat-option>
                 <mat-option value="2">Intenta pero inseguro</mat-option>
                 <mat-option value="5">Alguna Ayuda</mat-option>
@@ -156,17 +163,17 @@
             </mat-form-field>
 
             <mat-form-field >
-              <mat-select [(value)]="MiccionSelected" (change)="onSelectChange($event)" placeholder="Miccion">
-                <mat-option value="0">Incapaz de hacerlo</mat-option>
-                <mat-option value="2">Intenta pero inseguro</mat-option>
-                <mat-option value="5">Alguna Ayuda</mat-option>
-                <mat-option value="8">Minima Ayuda</mat-option>
-                <mat-option value="10">Independiente</mat-option>                   
+              <mat-select [(value)]="valoracion.ctrl_miccion" (change)="OnSelectChangeBartel($event)" placeholder="Miccion">
+                <mat-option value=0>Incapaz de hacerlo</mat-option>
+                <mat-option value=2>Intenta pero inseguro</mat-option>
+                <mat-option value=5>Alguna Ayuda</mat-option>
+                <mat-option value=8>Minima Ayuda</mat-option>
+                <mat-option value=10>Independiente</mat-option>                   
               </mat-select>
             </mat-form-field>
 
             <mat-form-field >
-              <mat-select [(value)]="CaminarSelected" (change)="onSelectChange($event)" placeholder="Caminar">
+              <mat-select [(value)]="valoracion.caminar" (change)="OnSelectChangeBartel($event)" placeholder="Caminar">
                 <mat-option value="0">Incapaz de hacerlo</mat-option>
                 <mat-option value="2">Intenta pero inseguro</mat-option>
                 <mat-option value="10">Alguna Ayuda</mat-option>
@@ -176,7 +183,7 @@
             </mat-form-field>
 
             <mat-form-field >
-              <mat-select [(value)]="TrasladoSillaSelected" (change)="onSelectChange($event)" placeholder="Traslado Silla Cama">
+              <mat-select [(value)]="valoracion.traslado_silla_cama" (change)="OnSelectChangeBartel($event)" placeholder="Traslado Silla Cama">
                 <mat-option value="0">Incapaz de hacerlo</mat-option>
                 <mat-option value="2">Intenta pero inseguro</mat-option>
                 <mat-option value="10">Alguna Ayuda</mat-option>
@@ -186,8 +193,13 @@
             </mat-form-field>
 
             <mat-form-field>
-                <textarea matInput placeholder="Comentario" name="comentario_val" [(ngModel)] = "Observaciones_val"></textarea>
+                <textarea matInput placeholder="Comentario" name="comentario_val" [(ngModel)] = "valoracion.Observaciones_val"></textarea>
               </mat-form-field>
+
+
+            <mat-form-field>
+              <textarea matInput placeholder="Plan de cuidados" name="plan_cuidados" [(ngModel)] = "valoracion.PlandeCuidados"></textarea>
+            </mat-form-field>
         </div>
 </div>
 
@@ -270,7 +282,7 @@
   </div>
   
   <div class="col">
-    <button type="button" class="btn btn-danger btn-block " (click)="SaveValoracion()">Cancelar</button>
+    <button type="button" class="btn btn-danger btn-block " (click)="Cancelar()">Cancelar</button>
   </div>
   
 </div>
