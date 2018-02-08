@@ -8,4 +8,4 @@
     </mat-select>
   </mat-form-field>
 </div>
- <p><a routerLink='/visita'[queryParams]="{id: pacienteSelected.iden_Pac} || 0" class="btn btn-primary btn-large">Register</a></p> 
+ <p *ngIf="pacienteSelected"><a routerLink='/visita'[queryParams]="{id: pacienteSelected.iden_Pac} || 0" class="btn btn-primary btn-large">Register</a></p> 

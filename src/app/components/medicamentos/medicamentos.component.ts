@@ -17,7 +17,7 @@ import { MatSelectChange } from "@angular/material";
 import { ValoracionEnfermeria } from '../../models/valoracion';
 import { Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-medicamentos',
@@ -40,19 +40,23 @@ export class MedicamentosComponent implements OnInit {
   
   constructor(private historialService: HistorialService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.GetMedicamentos();
     this.GetHistMedicPaciente();
     this.valoracion.pielIntegra = false;
     this.route.queryParams.subscribe((params)=>{
-      this.valoracion.iden_pac = params['id'];      
-    })
-
-    
+      if(params['id'])
+      {
+        this.valoracion.iden_pac = params['id'];
+      }else{
+        this.Cancelar();
+      }
+            
+    });
   }
-
     onSelectChange(event: MatSelectChange){
       this.puntajeTotalBraden = Number(this.valoracion.percepcion_sensorial) + Number(this.valoracion.exposicion_humedad) + Number(this.valoracion.actividad)
                   + Number(this.valoracion.movilidad) + Number(this.valoracion.nutricion) + Number(this.valoracion.friccion_cizallamiento);
@@ -150,6 +154,7 @@ export class MedicamentosComponent implements OnInit {
 
     Cancelar(){
       this.router.navigate(['/selectuser'])
+      this.valoracion.iden_pac = '';
     }   
 
     SaveValoracion(){
@@ -159,6 +164,7 @@ export class MedicamentosComponent implements OnInit {
 
       this.historialService.addValoracionPaciente(this.valoracion).subscribe(res=>{
         console.log(res);
+        this.valoracion = {} as any;
       });
     }
   }

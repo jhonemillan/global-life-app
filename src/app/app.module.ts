@@ -78,6 +78,7 @@ import { UserselectComponent } from './components/userselect/userselect.componen
     MatListModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
     HttpModule,
     FormsModule,
     AppRoutingModule
