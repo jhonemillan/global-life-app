@@ -1,4 +1,5 @@
-export interface ValoracionEnfermeria{    
+export interface ValoracionEnfermeria{
+    Id_ValSegEnf?: number,    
     Fecha: Date, 
     pielIntegra: boolean,
     observacion_Piel?: string,

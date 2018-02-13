@@ -43,7 +43,7 @@ export class MedicamentosComponent implements OnInit {
               private router: Router,
               private dialog: MatDialog) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.GetMedicamentos();
     this.GetHistMedicPaciente();
     this.valoracion.pielIntegra = false;
@@ -51,12 +51,22 @@ export class MedicamentosComponent implements OnInit {
       if(params['id'])
       {
         this.valoracion.iden_pac = params['id'];
+        this.crearVisitaBasica();
       }else{
         this.Cancelar();
       }
             
     });
   }
+
+  crearVisitaBasica(){
+    this.valoracion.Fecha = new Date();
+    this.historialService.addValoracionPaciente(this.valoracion).subscribe(res=>{
+    this.valoracion.Id_ValSegEnf= res.Id_ValSegEnf;      
+    });  
+  }
+
+
     onSelectChange(event: MatSelectChange){
       this.puntajeTotalBraden = Number(this.valoracion.percepcion_sensorial) + Number(this.valoracion.exposicion_humedad) + Number(this.valoracion.actividad)
                   + Number(this.valoracion.movilidad) + Number(this.valoracion.nutricion) + Number(this.valoracion.friccion_cizallamiento);
@@ -127,7 +137,7 @@ export class MedicamentosComponent implements OnInit {
     }
 
     GetHistMedicPaciente(){
-      this.historial = this.historialService.getHistorialPaciente();
+      this.historial = this.historialService.getHistorialPaciente(this.valoracion.Id_ValSegEnf);
     }
 
     DeleteMedicPaciente(id){
@@ -140,8 +150,7 @@ export class MedicamentosComponent implements OnInit {
     AddMedicamentoToHist(){            
       this.insumoPaciente.createdAt = new Date();
       this.insumoPaciente.id_usu=9999;
-      this.insumoPaciente.hora;
-     
+      this.insumoPaciente.Id_ValSegEnf = this.valoracion.Id_ValSegEnf;
       
       this.historialService.addMedicamentoHist(this.insumoPaciente).subscribe(res=>{       
        this.insumoPaciente.dosis = "";
@@ -158,13 +167,17 @@ export class MedicamentosComponent implements OnInit {
     }   
 
     SaveValoracion(){
-      this.valoracion.Fecha = new Date();      
+          
       this.valoracion.puntajeTotal_Braden = this.puntajeTotalBraden;
       this.valoracion.puntajeTotal_val = this.totalBarthel;
 
-      this.historialService.addValoracionPaciente(this.valoracion).subscribe(res=>{
+      // this.historialService.addValoracionPaciente(this.valoracion).subscribe(res=>{
+      //   console.log(res);
+      //   this.valoracion = {} as any;
+      // });
+
+      this.historialService.updateValoracionPaciente(this.valoracion).subscribe(res=>{
         console.log(res);
-        this.valoracion = {} as any;
       });
     }
   }

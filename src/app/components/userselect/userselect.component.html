@@ -1,11 +1,42 @@
+<form action="">
 <div style="width: 90%; flex-direction: column; display: flex">
 
   <mat-form-field>
-    <mat-select placeholder="Paciente" name="pacientes" [(ngModel)]="pacienteSelected" name="listPc">
-      <mat-option *ngFor="let paciente of pacientes | async" [value]="paciente">
-        {{paciente.nom_Pac +' '+ paciente.ape_Pac}}
+    <input matInput [matAutocomplete]="auto" [formControl]="myControl">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredPacientes | async" 
+        [value]="option.nom_Pac +' '+ option.ape_Pac" (onSelectionChange)="getPacienteFromAuto(option)">
+        <span>{{option.nom_Pac +' '+ option.ape_Pac}}</span>
       </mat-option>
-    </mat-select>
+    </mat-autocomplete>
   </mat-form-field>
 </div>
- <p *ngIf="pacienteSelected"><a routerLink='/visita'[queryParams]="{id: pacienteSelected.iden_Pac} || 0" class="btn btn-primary btn-large">Register</a></p> 
+ <p *ngIf="pacienteSelected"><a routerLink='/visita'[queryParams]="{id: pacienteSelected.iden_Pac} || 0" class="btn btn-primary btn-large">Iniciar Visita</a></p> 
+
+
+ <div>                   
+
+  <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th >Visita</th>
+          <th scope="col">Fecha</th>          
+          <th scope="col"></th>                    
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let visita of visitas | async"> 
+          <td>{{visita.Id_ValSegEnf}}</td>
+          <td>{{visita.Fecha}}</td>          
+          <td>
+            <button mat-icon-button color="warn">
+              <mat-icon aria-label="Example icon-button with a heart icon">detalle</mat-icon>
+            </button>
+          </td>              
+        </tr>
+        
+      </tbody>
+    </table>
+
+</div>  
+</form>

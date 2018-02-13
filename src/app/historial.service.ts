@@ -23,8 +23,8 @@ domain ="http://localhost:3000";
     return this.http.get(this.domain + '/pacientes/getListPacientes').map(res=> res.json()).catch(this.handleError);
   }
 
-  getHistorialPaciente(): Observable<historial_medicamentos[]>{   
-    return this.http.get(this.domain + '/seguimiento/getAll').map(res=> res.json())
+  getHistorialPaciente(id): Observable<historial_medicamentos[]>{   
+    return this.http.get(this.domain + '/seguimiento/getAll/' + id).map(res=> res.json())
                                                              .catch(this.handleError);
   }
 
@@ -36,6 +36,16 @@ domain ="http://localhost:3000";
     return this.http.post(this.domain + '/valoracion/add',data)
     .map(res=> res.json())
     .catch(this.handleError);
+  }
+
+  updateValoracionPaciente(data: ValoracionEnfermeria): Observable<any>{
+    return this.http.put(this.domain + '/valoracion/update/'+data.Id_ValSegEnf.toString(),data).map(res=>res.json())
+                                                                                               .catch(this.handleError);    
+  }
+
+  getValoracionListPaciente(id): Observable<ValoracionEnfermeria[]>{
+    return this.http.get(this.domain + '/valoracion/getAll/' + id).map(res=> res.json())
+                                                             .catch(this.handleError);
   }
 
   deleteHistPaciente(id): Observable<historial_medicamentos[]>{

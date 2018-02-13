@@ -5,5 +5,7 @@ export interface historial_medicamentos{
     id_prod: string,
     id_usu?: number
     createdAt?: Date,
-    medicamento: {nom_prod:string}
+    medicamento: {nom_prod:string},
+    Id_ValSegEnf?:number
+
 }

@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule, FormControl, NgControl} from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http'
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
@@ -80,8 +80,9 @@ import { UserselectComponent } from './components/userselect/userselect.componen
     MatIconModule,
     MatDialogModule,
     HttpModule,
-    FormsModule,
-    AppRoutingModule
+    FormsModule,    
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [HistorialService, HttpClientModule, EmitterService],
   bootstrap: [AppComponent]
