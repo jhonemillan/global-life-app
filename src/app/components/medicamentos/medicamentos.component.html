@@ -211,16 +211,17 @@
     <br>
 
     <div class="example-container">
-        
-     
-
+    
     <mat-form-field>
-        <mat-select placeholder="Medicamento" name="medicamentos" [(value)]="insumoPaciente.id_prod" name="listMx">
-          <mat-option *ngFor="let med of medicamentos | async" [value]="med.id_prod">
-            {{med.nom_prod}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <input matInput [matAutocomplete]="auto" [formControl]="myControl" placeholder="Medicamento">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredMedicamentos | async" 
+          [value]="option.nom_prod" (onSelectionChange)="getMedicamentoFromAuto(option)">
+          <span>{{option.nom_prod}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
 
 
 
@@ -238,7 +239,7 @@
     </div>
 
 
-  <button class="btn btn-primary" type="submit" value="Guardar">Agregar a lista</button>
+  <button class="btn btn-primary" type="submit" value="Guardar" >Agregar a lista</button>
 
 
 

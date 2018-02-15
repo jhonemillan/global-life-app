@@ -7,8 +7,6 @@ import { Medicamento } from './../../models/medicamento';
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
-import {startWith} from 'rxjs/operators/startWith';
-import {map} from 'rxjs/operators/map';
 import {MatTableDataSource, MatIconModule} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -18,6 +16,8 @@ import { ValoracionEnfermeria } from '../../models/valoracion';
 import { Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { catchError, map, tap,startWith, switchMap, 
+  debounceTime, distinctUntilChanged, takeWhile, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-medicamentos',
@@ -30,6 +30,9 @@ export class MedicamentosComponent implements OnInit {
   insumoPaciente = {} as historial_medicamentos;
   historial: Observable<historial_medicamentos[]>;
   valoracion: ValoracionEnfermeria = {} as any; 
+  filteredMedicamentos: Observable<any>;
+  myControl: FormControl = new FormControl(); 
+
   
   puntajeTotalBraden = 0;
   totalBarthel: number = 0;
@@ -57,6 +60,28 @@ export class MedicamentosComponent implements OnInit {
       }
             
     });
+    this.cargarFiltrosMedicamentos();
+
+  }
+
+  cargarFiltrosMedicamentos(){
+    this.filteredMedicamentos = this.myControl.valueChanges
+        .pipe(
+          startWith(null),
+          debounceTime(200),           
+          switchMap(val => {           
+            return this.filter(val || '')
+          })       
+        );
+  }
+
+  filter(val: string): Observable<any[]> {
+    return this.medicamentos
+    .pipe(
+      map(response => response.filter(option => {       
+        return option.nom_prod.toLowerCase().indexOf(val.toLowerCase()) > -1
+      }))
+    )
   }
 
   crearVisitaBasica(){
@@ -145,6 +170,10 @@ export class MedicamentosComponent implements OnInit {
         console.log(data);
         this.GetHistMedicPaciente();
       })
+    }
+
+    getMedicamentoFromAuto(medicamento: historial_medicamentos){
+      this.insumoPaciente = medicamento;
     }
 
     AddMedicamentoToHist(){            

@@ -2,7 +2,7 @@
 <div style="width: 90%; flex-direction: column; display: flex">
 
   <mat-form-field>
-    <input matInput [matAutocomplete]="auto" [formControl]="myControl">
+    <input matInput [matAutocomplete]="auto" [formControl]="myControl" placeholder="Ingrese Usuario">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredPacientes | async" 
         [value]="option.nom_Pac +' '+ option.ape_Pac" (onSelectionChange)="getPacienteFromAuto(option)">
@@ -29,8 +29,8 @@
           <td>{{visita.Id_ValSegEnf}}</td>
           <td>{{visita.Fecha}}</td>          
           <td>
-            <button mat-icon-button color="warn">
-              <mat-icon aria-label="Example icon-button with a heart icon">detalle</mat-icon>
+            <button mat-icon-button color="success">
+              <mat-icon aria-label="Example icon-button with a heart icon">description</mat-icon>
             </button>
           </td>              
         </tr>
