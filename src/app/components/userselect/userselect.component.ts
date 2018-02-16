@@ -4,14 +4,12 @@ import { Paciente } from './../../models/pacientes';
 import { Observable } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 import { HistorialService } from './../../historial.service';
-import { Router } from '@angular/router/src/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSelectChange } from "@angular/material";
 import {FormBuilder, FormGroup, Validators , ValidatorFn, AbstractControl, FormControl, ReactiveFormsModule} from '@angular/forms';
 import { catchError, map, tap,startWith, switchMap, 
          debounceTime, distinctUntilChanged, takeWhile, first } from 'rxjs/operators';
-         
-
-
+import { EmitterService } from '../../services/emitter.service';
 
 @Component({
   selector: 'app-userselect',
@@ -28,7 +26,9 @@ export class UserselectComponent implements OnInit {
   filteredPacientes: Observable<any>;
 
 
-  constructor(private historialService: HistorialService) { }
+  constructor(private historialService: HistorialService,
+              private dataService: EmitterService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getPacientes();
@@ -70,5 +70,11 @@ export class UserselectComponent implements OnInit {
   getPacienteFromAuto(paciente: Paciente){
       this.pacienteSelected = paciente;
       this.getVisitasPaciente();
+  }
+
+  openDetails(visita: ValoracionEnfermeria){
+    console.log(visita);
+    this.router.navigate(['/visita',visita.iden_pac,visita.Id_ValSegEnf])
+    this.dataService.setVisita(visita);
   }
 }

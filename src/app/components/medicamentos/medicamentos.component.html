@@ -24,10 +24,10 @@
 
             <mat-form-field >
               <mat-select [(value)]="valoracion.percepcion_sensorial" (change)="onSelectChange($event)" placeholder="Percepcion Sensorial">                
-                <mat-option value="1">Completamente Limitado</mat-option>
-                <mat-option value="2">Muy limitado</mat-option>
-                <mat-option value="3">Levemente Limitado</mat-option>
-                <mat-option value="4">Ninguna Limitacion</mat-option>
+                <mat-option [value]="1">Completamente Limitado</mat-option>
+                <mat-option [value]="2">Muy limitado</mat-option>
+                <mat-option [value]="3">Levemente Limitado</mat-option>
+                <mat-option [value]="4">Ninguna Limitacion</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -37,10 +37,10 @@
           <div class="example-container">
             <mat-form-field >
               <mat-select [(value)]="valoracion.exposicion_humedad" (change)="onSelectChange($event)" placeholder="Exposicion a la humedad">                
-                <mat-option value="1">Excesivamente Humeda</mat-option>
-                <mat-option value="2">Muy humeda</mat-option>
-                <mat-option value="3">Ocasionalmente humedo</mat-option>
-                <mat-option value="4">Raramente humedo</mat-option>
+                <mat-option [value]="1">Excesivamente Humeda</mat-option>
+                <mat-option [value]="2">Muy humeda</mat-option>
+                <mat-option [value]="3">Ocasionalmente humedo</mat-option>
+                <mat-option [value]="4">Raramente humedo</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -48,36 +48,36 @@
           <div class="example-container" >
               <mat-form-field >
                 <mat-select [(value)]="valoracion.actividad" (change)="onSelectChange($event)" placeholder="Actividad">                  
-                  <mat-option value="1">Completamente Inmovil</mat-option>
-                  <mat-option value="2">Confinado a silla</mat-option>
-                  <mat-option value="3">camina Ocasionalmene</mat-option>
-                  <mat-option value="4">camina Frecuentemente</mat-option>
+                  <mat-option [value]="1">Completamente Inmovil</mat-option>
+                  <mat-option [value]="2">Confinado a silla</mat-option>
+                  <mat-option [value]="3">camina Ocasionalmene</mat-option>
+                  <mat-option [value]="4">camina Frecuentemente</mat-option>
                 </mat-select>
               </mat-form-field>
 
               <mat-form-field >
                   <mat-select [(value)]="valoracion.movilidad" (change)="onSelectChange($event)" placeholder="Movilidad">                    
-                    <mat-option value="1">Completamente Inmovil</mat-option>
-                    <mat-option value="2">Muy Limitado</mat-option>
-                    <mat-option value="3">Levemente limitado</mat-option>
-                    <mat-option value="4">Ninguna Limitacion</mat-option>
+                    <mat-option [value]="1">Completamente Inmovil</mat-option>
+                    <mat-option [value]="2">Muy Limitado</mat-option>
+                    <mat-option [value]="3">Levemente limitado</mat-option>
+                    <mat-option [value]="4">Ninguna Limitacion</mat-option>
                   </mat-select>
                 </mat-form-field>
 
                 <mat-form-field >
                   <mat-select [(value)]="valoracion.nutricion" (change)="onSelectChange($event)" placeholder="Nutricion">                    
-                    <mat-option value="1">Deficiente</mat-option>
-                    <mat-option value="2">Inadecuada</mat-option>
-                    <mat-option value="3">Adecuada</mat-option>
-                    <mat-option value="4">Excelente</mat-option>
+                    <mat-option [value]="1">Deficiente</mat-option>
+                    <mat-option [value]="2">Inadecuada</mat-option>
+                    <mat-option [value]="3">Adecuada</mat-option>
+                    <mat-option [value]="4">Excelente</mat-option>
                   </mat-select>
                 </mat-form-field>
 
                 <mat-form-field >
                   <mat-select [(value)]="valoracion.friccion_cizallamiento" (change)="onSelectChange($event)" placeholder="Friccion y Cizallamiento">                    
-                    <mat-option value="1">Requiere maximo cuidado</mat-option>
-                    <mat-option value="2">Requiere minimo cuidado</mat-option>
-                    <mat-option value="3">Sin problema aparente</mat-option>                    
+                    <mat-option [value]="1">Requiere maximo cuidado</mat-option>
+                    <mat-option [value]="2">Requiere minimo cuidado</mat-option>
+                    <mat-option [value]="3">Sin problema aparente</mat-option>                    
                   </mat-select>
                 </mat-form-field>
 
@@ -98,11 +98,11 @@
       <div class="example-container" >
         <mat-form-field >
           <mat-select [(value)]="valoracion.banarse" (change)="OnSelectChangeBartel($event)" placeholder="Banarse">
-            <mat-option value="0">Incapaz de hacerlo</mat-option>
-            <mat-option value="1">Intenta pero inseguro</mat-option>
-            <mat-option value="3">Alguna Ayuda</mat-option>
-            <mat-option value="4">Minima Ayuda</mat-option>
-            <mat-option value="5">Independiente</mat-option>
+            <mat-option [value]="0">Incapaz de hacerlo</mat-option>
+            <mat-option [value]="1">Intenta pero inseguro</mat-option>
+            <mat-option [value]="3">Alguna Ayuda</mat-option>
+            <mat-option [value]="4">Minima Ayuda</mat-option>
+            <mat-option [value]="5">Independiente</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -112,11 +112,11 @@
       <div class="example-container">
         <mat-form-field >
           <mat-select [(value)]="valoracion.comer" (change)="OnSelectChangeBartel($event)" placeholder="Comer">
-            <mat-option value="0">Incapaz de hacerlo</mat-option>
-            <mat-option value="2">Intenta pero inseguro</mat-option>
-            <mat-option value="5">Alguna Ayuda</mat-option>
-            <mat-option value="8">Minima Ayuda</mat-option>
-            <mat-option value="10">Independiente</mat-option>
+            <mat-option [value]="0">Incapaz de hacerlo</mat-option>
+            <mat-option [value]="2">Intenta pero inseguro</mat-option>
+            <mat-option [value]="5">Alguna Ayuda</mat-option>
+            <mat-option [value]="8">Minima Ayuda</mat-option>
+            <mat-option [value]="10">Independiente</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -124,71 +124,71 @@
       <div class="example-container" >
           <mat-form-field >
             <mat-select [(value)]="valoracion.usar_retrete" (change)="OnSelectChangeBartel($event)" placeholder="Uso del retrete">
-              <mat-option value="0">Incapaz de hacerlo</mat-option>
-              <mat-option value="2">Intenta pero inseguro</mat-option>
-              <mat-option value="5">Alguna Ayuda</mat-option>
-              <mat-option value="8">Minima Ayuda</mat-option>
-              <mat-option value="10">Independiente</mat-option>
+              <mat-option [value]="0">Incapaz de hacerlo</mat-option>
+              <mat-option [value]="2">Intenta pero inseguro</mat-option>
+              <mat-option [value]="5">Alguna Ayuda</mat-option>
+              <mat-option [value]="8">Minima Ayuda</mat-option>
+              <mat-option [value]="10">Independiente</mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field >
               <mat-select [(value)]="valoracion.subir_escalera" (change)="OnSelectChangeBartel($event)" placeholder="Uso de escaleras">
-                <mat-option value="0">Incapaz de hacerlo</mat-option>
-                <mat-option value="2">Intenta pero inseguro</mat-option>
-                <mat-option value="5">Alguna Ayuda</mat-option>
-                <mat-option value="8">Minima Ayuda</mat-option>
-                <mat-option value="10">Independiente</mat-option>
+                <mat-option [value]="0">Incapaz de hacerlo</mat-option>
+                <mat-option [value]="2">Intenta pero inseguro</mat-option>
+                <mat-option [value]="5">Alguna Ayuda</mat-option>
+                <mat-option [value]="8">Minima Ayuda</mat-option>
+                <mat-option [value]="10">Independiente</mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field >
               <mat-select [(value)]="valoracion.vestirse" (change)="OnSelectChangeBartel($event)" placeholder="Vestirse">
-                <mat-option value="0">Incapaz de hacerlo</mat-option>
-                <mat-option value="2">Intenta pero inseguro</mat-option>
-                <mat-option value="5">Alguna Ayuda</mat-option>
-                <mat-option value="8">Minima Ayuda</mat-option>
-                <mat-option value="10">Independiente</mat-option>
+                <mat-option [value]="0">Incapaz de hacerlo</mat-option>
+                <mat-option [value]="2">Intenta pero inseguro</mat-option>
+                <mat-option [value]="5">Alguna Ayuda</mat-option>
+                <mat-option [value]="8">Minima Ayuda</mat-option>
+                <mat-option [value]="10">Independiente</mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field >
               <mat-select [(value)]="valoracion.ctrl_deposicion" (change)="OnSelectChangeBartel($event)" placeholder="Deposicion">
-                <mat-option value="0">Incapaz de hacerlo</mat-option>
-                <mat-option value="2">Intenta pero inseguro</mat-option>
-                <mat-option value="5">Alguna Ayuda</mat-option>
-                <mat-option value="8">Minima Ayuda</mat-option>
-                <mat-option value="10">Independiente</mat-option>                   
+                <mat-option [value]="0">Incapaz de hacerlo</mat-option>
+                <mat-option [value]="2">Intenta pero inseguro</mat-option>
+                <mat-option [value]="5">Alguna Ayuda</mat-option>
+                <mat-option [value]="8">Minima Ayuda</mat-option>
+                <mat-option [value]="10">Independiente</mat-option>                   
               </mat-select>
             </mat-form-field>
 
             <mat-form-field >
               <mat-select [(value)]="valoracion.ctrl_miccion" (change)="OnSelectChangeBartel($event)" placeholder="Miccion">
-                <mat-option value=0>Incapaz de hacerlo</mat-option>
-                <mat-option value=2>Intenta pero inseguro</mat-option>
-                <mat-option value=5>Alguna Ayuda</mat-option>
-                <mat-option value=8>Minima Ayuda</mat-option>
-                <mat-option value=10>Independiente</mat-option>                   
+                <mat-option [value]=0>Incapaz de hacerlo</mat-option>
+                <mat-option [value]=2>Intenta pero inseguro</mat-option>
+                <mat-option [value]=5>Alguna Ayuda</mat-option>
+                <mat-option [value]=8>Minima Ayuda</mat-option>
+                <mat-option [value]=10>Independiente</mat-option>                   
               </mat-select>
             </mat-form-field>
 
             <mat-form-field >
               <mat-select [(value)]="valoracion.caminar" (change)="OnSelectChangeBartel($event)" placeholder="Caminar">
-                <mat-option value="0">Incapaz de hacerlo</mat-option>
-                <mat-option value="2">Intenta pero inseguro</mat-option>
-                <mat-option value="10">Alguna Ayuda</mat-option>
-                <mat-option value="14">Minima Ayuda</mat-option>
-                <mat-option value="15">Independiente</mat-option>                   
+                <mat-option [value]="0">Incapaz de hacerlo</mat-option>
+                <mat-option [value]="2">Intenta pero inseguro</mat-option>
+                <mat-option [value]="10">Alguna Ayuda</mat-option>
+                <mat-option [value]="14">Minima Ayuda</mat-option>
+                <mat-option [value]="15">Independiente</mat-option>                   
               </mat-select>
             </mat-form-field>
 
             <mat-form-field >
               <mat-select [(value)]="valoracion.traslado_silla_cama" (change)="OnSelectChangeBartel($event)" placeholder="Traslado Silla Cama">
-                <mat-option value="0">Incapaz de hacerlo</mat-option>
-                <mat-option value="2">Intenta pero inseguro</mat-option>
-                <mat-option value="10">Alguna Ayuda</mat-option>
-                <mat-option value="14">Minima Ayuda</mat-option>
-                <mat-option value="15">Independiente</mat-option>                   
+                <mat-option [value]="0">Incapaz de hacerlo</mat-option>
+                <mat-option [value]="2">Intenta pero inseguro</mat-option>
+                <mat-option [value]="10">Alguna Ayuda</mat-option>
+                <mat-option [value]="14">Minima Ayuda</mat-option>
+                <mat-option [value]="15">Independiente</mat-option>                   
               </mat-select>
             </mat-form-field>
 
@@ -239,7 +239,7 @@
     </div>
 
 
-  <button class="btn btn-primary" type="submit" value="Guardar" >Agregar a lista</button>
+  <button [disabled] = "consulta" class="btn btn-primary" type="submit" value="Guardar" >Agregar a lista</button>
 
 
 
@@ -279,7 +279,7 @@
 
 <div class="row">
   <div class="col">
-    <button type="button" class="btn btn-primary btn-block " (click)="SaveValoracion()">Guardar</button>  
+    <button [disabled] = "consulta" type="button" class="btn btn-primary btn-block " (click)="SaveValoracion()">Guardar</button>  
   </div>
   
   <div class="col">

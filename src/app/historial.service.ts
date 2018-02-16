@@ -53,6 +53,12 @@ domain ="http://localhost:3000";
                                                                                .catch(this.handleError);
   }
 
+  getVisitaHistorica(id_pac, id_visita): Observable<ValoracionEnfermeria>{
+    return this.http.get(this.domain + '/valoracion/get/' + id_pac + '/'+id_visita).map(res=> res.json())
+                                                             .catch(this.handleError);
+
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

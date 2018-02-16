@@ -1,3 +1,4 @@
+import { EmitterService } from './../../services/emitter.service';
 
 import { Paciente } from './../../models/pacientes';
 import { historial_medicamentos } from './../../models/historial_medicamentos';
@@ -32,7 +33,7 @@ export class MedicamentosComponent implements OnInit {
   valoracion: ValoracionEnfermeria = {} as any; 
   filteredMedicamentos: Observable<any>;
   myControl: FormControl = new FormControl(); 
-
+  consulta = false;
   
   puntajeTotalBraden = 0;
   totalBarthel: number = 0;
@@ -42,25 +43,44 @@ export class MedicamentosComponent implements OnInit {
   MsgBarthel;
   
   constructor(private historialService: HistorialService,
+              private dataService: EmitterService,
               private route: ActivatedRoute,
               private router: Router,
               private dialog: MatDialog) { }
 
   ngOnInit() {    
+
+    this.route.params.subscribe((params) =>{
+      console.log('entra');
+
+      if (params['id_visita']) {
+        this.consulta = true;
+        this.valoracion = this.dataService.getVisita();        
+        console.log(this.valoracion);
+      }
+
+    });
+
+    if(!this.consulta){
+      this.route.queryParams.subscribe((params)=>{      
+        if(params['id'])
+        {
+          this.valoracion.iden_pac = params['id'];
+          this.crearVisitaBasica();        
+        }
+        else{
+          console.log('cancelada');
+          this.Cancelar();
+        }
+        
+      });
+    }
+
+    
+    this.cargarFiltrosMedicamentos();
     this.GetMedicamentos();
     this.GetHistMedicPaciente();
     this.valoracion.pielIntegra = false;
-    this.route.queryParams.subscribe((params)=>{
-      if(params['id'])
-      {
-        this.valoracion.iden_pac = params['id'];
-        this.crearVisitaBasica();
-      }else{
-        this.Cancelar();
-      }
-            
-    });
-    this.cargarFiltrosMedicamentos();
 
   }
 
