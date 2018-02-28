@@ -10,6 +10,7 @@ export class EmitterService {
 
     pacienteSelected:Paciente = {} as any;
     valoracion: ValoracionEnfermeria = {} as any; 
+    idProfesional: number;
    
     setPaciente(paciente: Paciente){
         this.pacienteSelected = paciente;
@@ -25,6 +26,14 @@ export class EmitterService {
 
     getVisita(): ValoracionEnfermeria{
         return this.valoracion;
+    }
+
+    setIdPro(data: number){
+        this.idProfesional = data;
+    }
+
+    getIdPro(){
+        return this.idProfesional;
     }
 
 

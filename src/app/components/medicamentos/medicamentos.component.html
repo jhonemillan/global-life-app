@@ -197,13 +197,23 @@
               </mat-form-field>
 
 
-            <mat-form-field>
-              <textarea matInput placeholder="Plan de cuidados" name="plan_cuidados" [(ngModel)] = "valoracion.PlandeCuidados"></textarea>
-            </mat-form-field>
+            
         </div>
 </div>
 
 
+  </mat-tab>
+
+  <mat-tab label="Extra">
+      <div class="example-container">
+        <mat-form-field>
+          <textarea matInput placeholder="Plan de cuidados" name="plan_cuidados" [(ngModel)] = "valoracion.PlandeCuidados"></textarea>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <textarea matInput placeholder="Educacion al Paciente" name="educacion_paciente" [(ngModel)] = "valoracion.EducacionPaciente"></textarea>
+          </mat-form-field>
+      </div>
   </mat-tab>
 
   <mat-tab label="Medicamentos">  

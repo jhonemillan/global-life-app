@@ -72,6 +72,10 @@ export class MedicamentosComponent implements OnInit {
           console.log('cancelada');
           this.Cancelar();
         }
+
+        if(params['id_usu']){
+          this.valoracion.id_usu = params['id_usu'];
+        }
         
       });
     }
@@ -106,6 +110,7 @@ export class MedicamentosComponent implements OnInit {
 
   crearVisitaBasica(){
     this.valoracion.Fecha = new Date();
+    this.valoracion.id_usu = this.dataService.getIdPro();
     this.historialService.addValoracionPaciente(this.valoracion).subscribe(res=>{
     this.valoracion.Id_ValSegEnf= res.Id_ValSegEnf;      
     });  
@@ -219,7 +224,7 @@ export class MedicamentosComponent implements OnInit {
           
       this.valoracion.puntajeTotal_Braden = this.puntajeTotalBraden;
       this.valoracion.puntajeTotal_val = this.totalBarthel;
-
+      
       // this.historialService.addValoracionPaciente(this.valoracion).subscribe(res=>{
       //   console.log(res);
       //   this.valoracion = {} as any;

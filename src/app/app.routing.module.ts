@@ -10,6 +10,7 @@ const appRoutes: Routes = [
   { path: 'selectuser',   component: UserselectComponent},
   { path: 'visita/:id',   component: UserselectComponent},
   { path: 'visita/:id_pac/:id_visita',   component: MedicamentosComponent},
+  { path: 'visita/:id_pac/:id_visita/:usuario',   component: MedicamentosComponent},
   { path: 'visita',   component: MedicamentosComponent},
   { path: '**', redirectTo: '' }
 ];  

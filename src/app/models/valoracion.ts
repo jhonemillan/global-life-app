@@ -23,6 +23,8 @@ export interface ValoracionEnfermeria{
     puntajeTotal_val?: number,
     Observaciones_val?: string,
     PlandeCuidados?: string,
-    iden_pac: string
+    EducacionPaciente?: string,
+    iden_pac: string,
+    id_usu: number
     
 }

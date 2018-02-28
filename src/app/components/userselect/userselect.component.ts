@@ -11,6 +11,7 @@ import { catchError, map, tap,startWith, switchMap,
          debounceTime, distinctUntilChanged, takeWhile, first } from 'rxjs/operators';
 import { EmitterService } from '../../services/emitter.service';
 
+
 @Component({
   selector: 'app-userselect',
   templateUrl: './userselect.component.html',
@@ -20,6 +21,7 @@ export class UserselectComponent implements OnInit {
   pacientes: Observable<Paciente[]>
   visitas: Observable<ValoracionEnfermeria[]>
   pacienteSelected:Paciente = {} as any;
+  idProfesional;
   idSelected;
 
   myControl: FormControl = new FormControl(); 
@@ -28,9 +30,18 @@ export class UserselectComponent implements OnInit {
 
   constructor(private historialService: HistorialService,
               private dataService: EmitterService,
+              private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
+
+    this.route.queryParams.subscribe((params)=>{      
+      if(params['usuario'])
+      {
+        this.dataService.setIdPro(params['usuario']);
+      }
+    });
+
     this.getPacientes();
 
       this.filteredPacientes = this.myControl.valueChanges
