@@ -19,6 +19,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { catchError, map, tap,startWith, switchMap, 
   debounceTime, distinctUntilChanged, takeWhile, first } from 'rxjs/operators';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-medicamentos',
@@ -46,7 +47,8 @@ export class MedicamentosComponent implements OnInit {
               private dataService: EmitterService,
               private route: ActivatedRoute,
               private router: Router,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              public snackBar: MatSnackBar) { }
 
   ngOnInit() {    
 
@@ -106,6 +108,13 @@ export class MedicamentosComponent implements OnInit {
         return option.nom_prod.toLowerCase().indexOf(val.toLowerCase()) > -1
       }))
     )
+  }
+
+
+  openSnackBar() {
+    this.snackBar.open('Se guardo la informacion', 'Global Life App', {
+      duration: 2000,
+    });
   }
 
   crearVisitaBasica(){
@@ -221,7 +230,6 @@ export class MedicamentosComponent implements OnInit {
     }   
 
     SaveValoracion(){
-          
       this.valoracion.puntajeTotal_Braden = this.puntajeTotalBraden;
       this.valoracion.puntajeTotal_val = this.totalBarthel;
       
@@ -232,6 +240,7 @@ export class MedicamentosComponent implements OnInit {
 
       this.historialService.updateValoracionPaciente(this.valoracion).subscribe(res=>{
         console.log(res);
+        this.openSnackBar();
       });
     }
   }

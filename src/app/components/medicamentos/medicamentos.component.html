@@ -207,11 +207,13 @@
   <mat-tab label="Extra">
       <div class="example-container">
         <mat-form-field>
-          <textarea matInput placeholder="Plan de cuidados" name="plan_cuidados" [(ngModel)] = "valoracion.PlandeCuidados"></textarea>
+          <textarea matInput placeholder="Plan de cuidados" matTextareaAutosize matAutosizeMinRows="1"
+          matAutosizeMaxRows="5" name="plan_cuidados" [(ngModel)] = "valoracion.PlandeCuidados"></textarea>
         </mat-form-field>
         
         <mat-form-field>
-            <textarea matInput placeholder="Educacion al Paciente" name="educacion_paciente" [(ngModel)] = "valoracion.EducacionPaciente"></textarea>
+            <textarea matInput placeholder="Educacion al Paciente" matTextareaAutosize matAutosizeMinRows="2"
+            matAutosizeMaxRows="5" name="educacion_paciente" [(ngModel)] = "valoracion.EducacionPaciente"></textarea>
           </mat-form-field>
       </div>
   </mat-tab>
@@ -293,7 +295,7 @@
   </div>
   
   <div class="col">
-    <button type="button" class="btn btn-danger btn-block " (click)="Cancelar()">Cancelar</button>
+    <button type="button" class="btn btn-warning btn-block " (click)="Cancelar()">Terminar Visita</button>
   </div>
   
 </div>
