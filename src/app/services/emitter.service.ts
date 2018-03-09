@@ -2,22 +2,28 @@ import { ValoracionEnfermeria } from './../models/valoracion';
 import { Paciente } from './../models/pacientes';
 import { Injectable, EventEmitter } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
 
 @Injectable()
 export class EmitterService {
 
-    pacienteSelected:Paciente = {} as any;
+    pacienteSelected : Observable<Paciente>;
     valoracion: ValoracionEnfermeria = {} as any; 
     idProfesional: number;
+    private subject = new Subject<any>();
    
     setPaciente(paciente: Paciente){
-        this.pacienteSelected = paciente;
+        this.subject.next(paciente);
     }
 
-    getPaciente(): Paciente{
-        return this.pacienteSelected;
+    getPaciente(): Observable<Paciente>{
+        return this.subject.asObservable();
+    }
+
+    clearPaciente(){
+        this.subject.next();
     }
 
     setVisita(visita: ValoracionEnfermeria){

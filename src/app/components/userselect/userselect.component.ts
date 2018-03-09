@@ -80,6 +80,7 @@ export class UserselectComponent implements OnInit {
 
   getPacienteFromAuto(paciente: Paciente){
       this.pacienteSelected = paciente;
+      this.dataService.setPaciente(paciente);
       this.getVisitasPaciente();
   }
 

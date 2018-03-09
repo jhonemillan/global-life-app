@@ -34,8 +34,8 @@ export class MedicamentosComponent implements OnInit {
   valoracion: ValoracionEnfermeria = {} as any; 
   filteredMedicamentos: Observable<any>;
   myControl: FormControl = new FormControl(); 
-  consulta = false;
-  
+  pacienteSelected = {} as Paciente;
+  consulta = false;  
   puntajeTotalBraden = 0;
   totalBarthel: number = 0;
   ThemeBraden;
@@ -67,7 +67,7 @@ export class MedicamentosComponent implements OnInit {
       this.route.queryParams.subscribe((params)=>{      
         if(params['id'])
         {
-          this.valoracion.iden_pac = params['id'];
+          this.valoracion.iden_pac = params['id'];          
           this.crearVisitaBasica();        
         }
         else{
@@ -227,6 +227,7 @@ export class MedicamentosComponent implements OnInit {
     Cancelar(){
       this.router.navigate(['/selectuser'])
       this.valoracion.iden_pac = '';
+      
     }   
 
     SaveValoracion(){
