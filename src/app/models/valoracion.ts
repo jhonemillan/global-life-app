@@ -25,6 +25,7 @@ export interface ValoracionEnfermeria{
     PlandeCuidados?: string,
     EducacionPaciente?: string,
     iden_pac: string,
-    id_usu: number
+    id_usu: number,
+    Observacion_gral?: string
     
 }

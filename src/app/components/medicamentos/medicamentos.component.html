@@ -212,8 +212,13 @@
         </mat-form-field>
         
         <mat-form-field>
-            <textarea matInput placeholder="Educacion al Paciente" matTextareaAutosize matAutosizeMinRows="2"
+            <textarea matInput placeholder="Educacion al Paciente" matTextareaAutosize matAutosizeMinRows="1"
             matAutosizeMaxRows="5" name="educacion_paciente" [(ngModel)] = "valoracion.EducacionPaciente"></textarea>
+          </mat-form-field>
+
+          <mat-form-field>
+            <textarea matInput placeholder="Observacion Gral" matTextareaAutosize matAutosizeMinRows="1"
+            matAutosizeMaxRows="5" name="observacion_gral" [(ngModel)] = "valoracion.Observacion_gral"></textarea>
           </mat-form-field>
       </div>
   </mat-tab>
