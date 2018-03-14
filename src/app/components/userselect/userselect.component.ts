@@ -69,6 +69,7 @@ export class UserselectComponent implements OnInit {
 
   getVisitasPaciente(){
     this.visitas = this.historialService.getValoracionListPaciente(this.pacienteSelected.iden_Pac);
+    console.log(this.visitas.toArray.length)
   }
 
   displayFn(paciente: Paciente): string {
@@ -79,6 +80,7 @@ export class UserselectComponent implements OnInit {
   }
 
   getPacienteFromAuto(paciente: Paciente){
+    console.log(paciente)
       this.pacienteSelected = paciente;
       this.dataService.setPaciente(paciente);
       this.getVisitasPaciente();

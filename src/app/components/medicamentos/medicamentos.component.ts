@@ -35,6 +35,11 @@ export class MedicamentosComponent implements OnInit {
   filteredMedicamentos: Observable<any>;
   myControl: FormControl = new FormControl(); 
   pacienteSelected = {} as Paciente;
+  currentUser = {} as {
+    nom_usu:string,
+    nom_rol: string
+  }
+
   consulta = false;  
   puntajeTotalBraden = 0;
   totalBarthel: number = 0;
@@ -67,19 +72,21 @@ export class MedicamentosComponent implements OnInit {
       this.route.queryParams.subscribe((params)=>{      
         if(params['id'])
         {
-          this.valoracion.iden_pac = params['id'];          
-          this.crearVisitaBasica();        
+          this.valoracion.iden_pac = params['id'];
         }
-        else{
+        else
+        {
           console.log('cancelada');
           this.Cancelar();
         }
-
+        
+        
         if(params['id_usu']){
           this.valoracion.id_usu = params['id_usu'];
         }
         
       });
+      this.crearVisitaBasica();
     }
 
     
@@ -118,11 +125,16 @@ export class MedicamentosComponent implements OnInit {
   }
 
   crearVisitaBasica(){
-    this.valoracion.Fecha = new Date();
-    this.valoracion.id_usu = this.dataService.getIdPro();
+    this.valoracion.Fecha = new Date();    
     this.historialService.addValoracionPaciente(this.valoracion).subscribe(res=>{
     this.valoracion.Id_ValSegEnf= res.Id_ValSegEnf;      
     });  
+    this.historialService.getUserInfo(this.valoracion.id_usu).subscribe(res=>{
+      this.currentUser = res[0];
+      console.log(this.currentUser);      
+    }); 
+          
+
   }
 
 
@@ -212,7 +224,7 @@ export class MedicamentosComponent implements OnInit {
 
     AddMedicamentoToHist(){            
       this.insumoPaciente.createdAt = new Date();
-      this.insumoPaciente.id_usu=9999;
+      this.insumoPaciente.id_usu= this.valoracion.id_usu;
       this.insumoPaciente.Id_ValSegEnf = this.valoracion.Id_ValSegEnf;
       
       this.historialService.addMedicamentoHist(this.insumoPaciente).subscribe(res=>{       
